@@ -141,13 +141,44 @@
     </div>
 
         {{ else }}
-        <h1>Hi, how do you want login</h1>
-        <a href="/session/github" class="btn btn-warning">Inicir Sesion GitHub</a> <br><br>
-        <a href="/login" class="btn btn-info">Iniciar Sesion Local</a> <br><br>
-        <a href="/register" class="btn btn-success">Registrese</a> 
+        
+        <div class="container w-75 bg-white mt-5 rounded shadow">
+            <div class="row align-items-stretch">
+                <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+                    
+                </div>
+                <div class="col bg-white p-5 rounded-end">
+
+                    <h2 class="fw-bold text-center py-5">Consulta tu Factura</h2>
+
+                    {{!-- login --}}
+                    <form action="#">
+                        <div class="mb-4">
+                            <label for="megayaemail" class="form-label">Identificación</label>
+                            <input type="megayaemail" class="form-control" name="megayaemail">
+                        </div>
+                        <div class="mb-4">
+                            <label for="megayaemail" class="form-label">Contraseña</label>
+                            <input type="megayapassword" class="form-control" name="megayapassword">
+                        </div>
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" name="megayaconnected" class="form-check-input" id="">
+                            <label for="connected" class="formcheck--label">Mantenerme Conectado</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn bt-megaya">Iniciar Sesion</button>
+                        </div>
+
+                        <div class="my-3">
+                            <span>¿No tienes cuenta?<a href="#">Regístrate</a></span><br>
+                            <span><a href="#">Recuperar Contraseña</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         {{/if}}
     </div>
-
-    
 </div>
