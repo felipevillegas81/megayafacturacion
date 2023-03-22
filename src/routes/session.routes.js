@@ -1,7 +1,8 @@
 import { Router } from "express"
 import passport from "passport"
-import { userModel } from '../models/user.model.js'
 import { comparePassword, hashPassword } from "../utils.js"
+
+import { megayauserModel } from "../models/megayauser.model.js"
 
 const router = Router()
 
@@ -12,16 +13,18 @@ router.get('/githubcallback', passport.authenticate('github', { failureRedirect:
     res.redirect('/')
 })
 
+// Megaya Login
 router.post('/login', passport.authenticate("login", { failureRedirect: '/failLogin' }), async (req, res) => {
+
     if(!req.user) {
-        return res.status(404).json({ message: 'User not found' })
+        return res.status(404).json({ user, message: 'User not found' })
     }
 
     req.session.user = {
-        first_names: req.user.first_name,
+        identification: req.user.identification,
+        first_name: req.user.first_name,
         last_name: req.user.last_name,
         email: req.user.email,
-        age: req.user.age,
         role: req.user.role
     }
 
@@ -41,10 +44,10 @@ router.get('/failRegister', (req, res) => {
 })
 
 router.post('/restore', async (req, res) => {
-    const { email, password } = req.body
+    const { identification, password } = req.body
 
     try{
-        const user = await userModel.findOne({ email })
+        const user = await megayauserModel.findOne({ identification })
 
         if(!user) {
             return res.status(404).json({ message: 'User not found' })

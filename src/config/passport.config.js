@@ -1,7 +1,7 @@
 import passport from "passport";
 import GitHubStrategy from "passport-github2";
 import local from "passport-local";
-import { userModel } from "../models/user.model.js";
+import { megayauserModel } from "../models/megayauser.model.js";
 import { hashPassword, comparePassword } from "../utils.js";
 
 const LocalStrategy = local.Strategy;
@@ -19,22 +19,24 @@ const initializePassport = () => {
     try{
       console.log(profile)
 
-      const user = await userModel.findOne({ 
+      const user = await megayauserModel.findOne({ 
         email: profile.emails[0].value 
       })
 
       if(!user) {
         const [first_name, last_name] = profile._json.name.split(" ")
         const newUser = {
+          identification,
           first_name,
           last_name,
           email: profile.emails[0].value,
           password: "",
-          age: ""
+          role
+
         }
 
       //await newUser.save()
-      const savedUser = await userModel.create(newUser)
+      const savedUser = await megayauserModel.create(newUser)
 
         done(null, newUser)
       } else {
@@ -47,34 +49,33 @@ const initializePassport = () => {
   )
 )
 
-
   passport.use(
     "register",
     new LocalStrategy(
       {
-        usernameField: "email",
+        usernameField: "identification",
         passReqToCallback: true,
       },
       async (req, username, password, done) => {
-        const { first_name, last_name, email, age, role } = req.body;
+        const { identification, first_name, last_name, email, role } = req.body;
 
-        if (!first_name || !last_name || !email || !age || !password) {
+        if ( !identification ||!first_name || !last_name || !email || !password) {
           return done('All fields are required', false);
         }
 
         try {
-          const user = await userModel.findOne({ email: username });
+          const user = await megayauserModel.findOne({ identification: username });
 
           if (user) {
             console.log("User already exists");
             return done(null, false);
           }
 
-          const newUser = await userModel.create({
+          const newUser = await megayauserModel.create({
+            identification,
             first_name,
             last_name,
             email,
-            age,
             password: hashPassword(password),
             role,
           });
@@ -93,11 +94,11 @@ const initializePassport = () => {
     "login",
     new LocalStrategy(
       {
-        usernameField: "email",
+        usernameField: "identification",
       },
       async (username, password, done) => {
         try {
-          const user = await userModel.findOne({ email: username });
+          const user = await megayauserModel.findOne({ identification: username });
 
           if (!user) {
             console.log("User not found");
@@ -125,7 +126,7 @@ const initializePassport = () => {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await userModel.findById(id);
+      const user = await megayauserModel.findById(id);
       done(null, user);
     } catch (error) {
       done(error, false);

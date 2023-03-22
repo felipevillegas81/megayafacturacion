@@ -1,7 +1,7 @@
 {
   "name": "practica-integradora",
   "version": "1.0.0",
-  "description": "Primera Practica Integradora",
+  "description": "Aplicacion Develop Megaya",
   "main": "index.js",
   "type": "module",
   "scripts": {

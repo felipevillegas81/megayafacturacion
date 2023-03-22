@@ -154,33 +154,34 @@
                     <h2 class="fw-bold text-center py-5">Consulta tu Factura</h2>
 
                     {{!-- login --}}
-                    <form action="#">
-                        <div class="mb-4">
-                            <label for="megayaemail" class="form-label">Identificación</label>
-                            <input type="megayaemail" class="form-control" name="megayaemail">
+                    <form action="/session/login" method="post">
+
+                        <div class="form-floating mb-4">
+                            <input required type="number" id="identification" class="form-control shadow-lg bg-body rounded" name="identification" placeholder="Numero de Cedula">
+                            <label for="floatingInput">Numero de Cedula</label>
                         </div>
-                        <div class="mb-4">
-                            <label for="megayaemail" class="form-label">Contraseña</label>
-                            <input type="megayapassword" class="form-control" name="megayapassword">
+
+                        <div class="form-floating mb-4">
+                            <input required type="password" id="password" class="form-control shadow-lg bg-body rounded" name="password" placeholder="Contraseña">
+                            <label for="floatingInput">Contraseña</label>
                         </div>
                         <div class="mb-4 form-check">
-                            <input type="checkbox" name="megayaconnected" class="form-check-input" id="">
+                            <input type="checkbox" name="connected" class="form-check-input" id="">
                             <label for="connected" class="formcheck--label">Mantenerme Conectado</label>
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn bt-megaya">Iniciar Sesion</button>
+                            <button type="submit" class="btn bt-megaya" >Iniciar Sesion</button>
                         </div>
 
                         <div class="my-3">
-                            <span>¿No eres cliente de Megaya?<a href="#">Regístrate</a></span><br>
+                            <span>¿Eres cliente de Megayá y aun no te has registrado?<a href="/register">Regístrate</a></span><br>
                             <span><a href="#">Recuperar Contraseña</a></span>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        
         {{/if}}
     </div>
 </div>

@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import productsDao from '../daos/dbManager/products.dao.js'
 import cartsDao from '../daos/dbManager/carts.dao.js'
-
 import productModel  from '../models/product.model.js'
 
 
@@ -13,20 +12,20 @@ const isSession = (req, res, next) => {
     next()
 }
 
+
+//Megaya Login
+router.get('/login', isSession, (req, res) => {
+    res.render('index')
+})
+
 //router.get('/', (req, res) => {
 //    res.redirect('/login')
 //})
 
 
-
 //Restore
 router.get('/restore', isSession, (req, res) => {
     res.render('restore')
-})
-
-//Login
-router.get('/login', isSession, (req, res) => {
-    res.render('login')
 })
 
 router.get('/register', isSession, (req, res) => {
@@ -46,7 +45,7 @@ router.get('/', async (req, res) => {
     const { limit } = req.query
     const products = await productModel.paginate({}, { page: page || 1 , limit: limit || 2 });
 //    const products = await productsDao.getAll()
-console.log(products)
+//console.log(products)
 
     const carts = await cartsDao.getAll()
     res.render('index', 
@@ -76,5 +75,8 @@ router.get('/carts/:cid', async (req, res) => {
     const cart = await cartsDao.getById(req.params.id)
     res.render('view', { title: 'View', cart })
 })
+
+
+
 
 export default router

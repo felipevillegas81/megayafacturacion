@@ -1,18 +1,57 @@
-<div>
-    <h1>Inicio de Sesion</h1>
-    <form action="/session/register" method="post">
-        <input type="text" name="first_name" placeholder="First Name">
-        <input type="text" name="last_name" placeholder="Last Name">
-        <input type="email" name="email" placeholder="E-Mail">
-        <input type="number" name="age" placeholder="Age">
-        <input type="password" name="password" placeholder="Password">
+<div class="container w-75 bg-white mt-5 rounded shadow">
+            <div class="row align-items-stretch">
+                <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+                    
+                </div>
+                <div class="col bg-white p-5 rounded-end">
 
-        <select class="form-select" name="role" id="">
-            <option value="user" selected>User</option>
-            <option value="admin">Admin</option>
-        </select>
+                    <h2 class="fw-bold text-center py-5">Registrate</h2>
 
-        <button type="submit">Registrese</button>
-    </form>
-    <a href="/login">Iniciar Sesion</a>
-</div>
+                    {{!-- Megaya Register --}}
+                    <form action="/session/register" method="post">
+                        
+                        {{!-- Megaya Identification Register --}}
+                        <div class="form-floating mb-4">
+                            <input required type="number" id="floatingInput" class="form-control shadow-lg bg-body rounded" name="identification" placeholder="Numero de Cedula">
+                            <label for="floatingInput">Numero de Cedula</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input required type="string" id="floatingInput" class="form-control shadow-lg bg-body rounded" name="first_name" placeholder="Nombre">
+                            <label for="floatingInput">Nombre</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input required type="string" id="floatingInput" class="form-control shadow-lg bg-body rounded" name="last_name" placeholder="Apellido">
+                            <label for="floatingInput">Apellido</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input required type="email" id="floatingInput" class="form-control shadow-lg bg-body rounded" name="email" placeholder="Correo">
+                            <label for="floatingInput">Correo</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input required type="password" id="floatingInput" class="form-control shadow-lg bg-body rounded" name="megayapassword" placeholder="Contraseña">
+                            <label for="floatingInput">Contraseña</label>
+                        </div>
+
+                        <select class="form-select" name="role" id="">
+                            <option value="user" selected>User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn bt-megaya" id="megayaregister">Registrarme</button>
+                        </div>
+
+                        <div class="my-3">
+                            <span>¿Eres cliente de Megayá y aun no te has registrado?<a href="/register">Regístrate</a></span><br>
+                            <span><a href="#">Recuperar Contraseña</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
